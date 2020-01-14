@@ -21,8 +21,8 @@ class ViewController: UIViewController {
 
     let basicApiUrlString = "https://api.openweathermap.org/data/2.5/weather?q="
     let apiKey = "bba69a7f8abb8f448add461e26add23c"
-    let latitude = "56.9496"
-    let longitude = "24.1052"
+    let latitude = "51.509865"
+    let longitude = "-0.118092"
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!

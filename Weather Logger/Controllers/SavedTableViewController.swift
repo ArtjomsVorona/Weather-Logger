@@ -49,7 +49,14 @@ class SavedTableViewController: UITableViewController {
         let weatherData = savedWeatherData[indexPath.row]
         
         cell.textLabel?.text = "\(weatherData.name) \(weatherData.temp) + °C"
+        cell.textLabel?.textColor = #colorLiteral(red: 0.3859816492, green: 0.5554968715, blue: 0.6556989551, alpha: 1)
+        
         cell.detailTextLabel?.text = "\(weatherData.requestTime!)"
+        cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4656865001, green: 0.7002133727, blue: 0.829667151, alpha: 1)
+        
+        if let image = UIImage(named: weatherData.weatherIcon) {
+            cell.imageView?.image = image
+        }
 
         return cell
     }
