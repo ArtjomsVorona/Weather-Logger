@@ -65,16 +65,22 @@ class SavedTableViewController: UITableViewController {
         return cell
     }
 
-
-    
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            savedWeatherData.remove(at: indexPath.row)
-            tableView.reloadData()
-            saveData()
+            let alert = UIAlertController(title: "Are you sure you want to delete this weather data?", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert) in
+                self.savedWeatherData.remove(at: indexPath.row)
+                tableView.reloadData()
+                self.saveData()
+            }))
+            
+            present(alert, animated: true, completion: nil)
         }
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 }

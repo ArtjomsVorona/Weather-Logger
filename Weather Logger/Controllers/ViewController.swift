@@ -16,8 +16,7 @@ class ViewController: UIViewController {
     var savedWeatherData = [WeatherData]()
     
     var userDefaults = UserDefaults.standard
-    
-    let diffFromFtoC = 273.15
+    var jsonParser = JsonParser()
 
     let basicApiUrlString = "https://api.openweathermap.org/data/2.5/weather?q="
     let apiKey = "bba69a7f8abb8f448add461e26add23c"
@@ -41,7 +40,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func updateAndSaveWetherDataTapped(_ sender: UIButton) {
-        print("Refreshh tapped")
+        print("Refresh tapped")
         getWeatherData(latitude: latitude, longitude: longitude)
     }
     
@@ -51,75 +50,18 @@ class ViewController: UIViewController {
         
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             if response.value != nil {
-                self.parse(json: response.value!)
+                let jsonResult = self.jsonParser.parse(json: response.value!)
+                self.weatherData = jsonResult.weatherData
+                self.detailsDict = jsonResult.detailsDict
+                
+                self.updateView(data: self.weatherData)
+                self.saveData()
             }
         }
     }//end getWeatherData
     
-    func parse(json: Any) {
-//        print(json)
-        
-        guard let dictionary = json as? [String: Any] else {
-            print("Unable to parse json")
-            return
-        }
-        
-        if let weatherArray = dictionary["weather"] as? [[String: Any]] {
-            for (key, value) in weatherArray[0] {
-                switch key {
-                case "id":
-                    weatherData.weatherId = value as! Int
-                case "main":
-                    weatherData.weatherMain = value as! String
-                case "description":
-                    weatherData.weatherDescription = value as! String
-                case "icon":
-                    weatherData.weatherIcon = value as! String
-                default:
-                    break
-                }
-            }
-        }
-        
-        if let mainDict = dictionary["main"] as? [String: Double] {
-            for (key, value) in mainDict {
-                switch key {
-                case "temp":
-                    weatherData.temp = Int(value - diffFromFtoC)
-                case "feels_like":
-                    weatherData.feelsLike = Int(value - diffFromFtoC)
-                    detailsDict["Feels like °C"] = Int(value - diffFromFtoC)
-                case "temp_min":
-                    weatherData.feelsLike = Int(value - diffFromFtoC)
-                    detailsDict["Temperature min °C"] = Int(value - diffFromFtoC)
-                case "temp_max":
-                    weatherData.tempMax = Int(value - diffFromFtoC)
-                    detailsDict["Temperature max °C"] = Int(value - diffFromFtoC)
-                case "pressure":
-                    weatherData.tempMax = Int(value)
-                    detailsDict["Pressure"] = Int(value)
-                case "humidity":
-                    weatherData.tempMax = Int(value)
-                    detailsDict["Humidity"] = Int(value)
-                default:
-                    break
-                }
-            }
-        }
-        
-        for (key, value) in dictionary {
-            if key == "name" {
-                weatherData.name = value as! String
-            }
-        }
-        
-        weatherData.requestTime = Date()
-        updateView(data: weatherData)
-        saveData()
-
-    }//end parse
-    
     func updateView(data: WeatherData) {
+        print("Update view called")
         
         cityNameLabel.text = data.name
         weatherDescriptionLabel.text = data.weatherDescription.capitalized
@@ -157,7 +99,6 @@ class ViewController: UIViewController {
         }
         savedWeatherData = decodedData
     }
-    
 }//end class
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
@@ -182,6 +123,5 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
     }
-    
 }//end extension
 

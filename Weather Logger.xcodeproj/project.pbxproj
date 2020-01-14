@@ -17,6 +17,7 @@
 		9625891C23CDA73800AC9224 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9625891A23CDA73800AC9224 /* LaunchScreen.storyboard */; };
 		9625892B23CDBD8300AC9224 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625892A23CDBD8300AC9224 /* WeatherData.swift */; };
 		9625892D23CE06FF00AC9224 /* SavedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625892C23CE06FF00AC9224 /* SavedTableViewController.swift */; };
+		9625893223CE242000AC9224 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625893123CE242000AC9224 /* JsonParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		9625891D23CDA73800AC9224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9625892A23CDBD8300AC9224 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		9625892C23CE06FF00AC9224 /* SavedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewController.swift; sourceTree = "<group>"; };
+		9625893123CE242000AC9224 /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		9625890B23CDA70E00AC9224 /* Weather Logger */ = {
 			isa = PBXGroup;
 			children = (
+				9625892E23CE219900AC9224 /* Helpers */,
 				9625892323CDA77700AC9224 /* Delegates */,
 				9625892423CDA78400AC9224 /* Controllers */,
 				9625892923CDBD6100AC9224 /* Model */,
@@ -130,6 +133,14 @@
 				9625892A23CDBD8300AC9224 /* WeatherData.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9625892E23CE219900AC9224 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9625893123CE242000AC9224 /* JsonParser.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +263,7 @@
 				9625890D23CDA70E00AC9224 /* AppDelegate.swift in Sources */,
 				9625892D23CE06FF00AC9224 /* SavedTableViewController.swift in Sources */,
 				9625891723CDA70E00AC9224 /* Weather_Logger.xcdatamodeld in Sources */,
+				9625893223CE242000AC9224 /* JsonParser.swift in Sources */,
 				9625890F23CDA70E00AC9224 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
