@@ -16,11 +16,15 @@ class SavedTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         loadData()
+    }
+    
+    func saveData() {
+        userDefaults.set(try? PropertyListEncoder().encode(savedWeatherData), forKey: "savedWeatherData")
     }
     
     func loadData() {
@@ -62,16 +66,15 @@ class SavedTableViewController: UITableViewController {
     }
 
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+            savedWeatherData.remove(at: indexPath.row)
+            tableView.reloadData()
+            saveData()
+        }
     }
-    */
+    
 
 }
