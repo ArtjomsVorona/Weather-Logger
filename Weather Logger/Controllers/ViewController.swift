@@ -10,8 +10,7 @@ import Alamofire
 import UIKit
 
 class ViewController: UIViewController {
-    
-    var weatherData = WeatherData()
+
     var detailsDict = [String: Int]()
     var savedWeatherData = [WeatherData]()
     
@@ -51,11 +50,11 @@ class ViewController: UIViewController {
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             if response.value != nil {
                 let jsonResult = self.jsonParser.parse(json: response.value!)
-                self.weatherData = jsonResult.weatherData
+                let weatherData = jsonResult.weatherData
                 self.detailsDict = jsonResult.detailsDict
                 
-                self.updateView(data: self.weatherData)
-                self.saveData()
+                self.updateView(data: weatherData)
+                self.saveData(weatherData)
             }
         }
     }//end getWeatherData
@@ -82,19 +81,19 @@ class ViewController: UIViewController {
         requestTimeLabel.text = ""
     }
     
-    func saveData() {
+    func saveData(_ weatherData: WeatherData) {
         savedWeatherData.insert(weatherData, at: 0)
         userDefaults.set(try? PropertyListEncoder().encode(savedWeatherData), forKey: "savedWeatherData")
     }
     
     func loadData() {
         guard let savedData = userDefaults.object(forKey: "savedWeatherData") as? Data else {
-            print("No data saved in userDefaults")
+            print("ViewController: No data saved in userDefaults")
             return
         }
         
         guard let decodedData = try? PropertyListDecoder().decode([WeatherData].self, from: savedData) else {
-            print("Unable to decode data")
+            print("ViewController: Unable to decode data")
             return
         }
         savedWeatherData = decodedData
