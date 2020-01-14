@@ -18,6 +18,7 @@
 		9625892B23CDBD8300AC9224 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625892A23CDBD8300AC9224 /* WeatherData.swift */; };
 		9625892D23CE06FF00AC9224 /* SavedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625892C23CE06FF00AC9224 /* SavedTableViewController.swift */; };
 		9625893223CE242000AC9224 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625893123CE242000AC9224 /* JsonParser.swift */; };
+		9625893423CE2CFC00AC9224 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625893323CE2CFC00AC9224 /* Api.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		9625892A23CDBD8300AC9224 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		9625892C23CE06FF00AC9224 /* SavedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewController.swift; sourceTree = "<group>"; };
 		9625893123CE242000AC9224 /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
+		9625893323CE2CFC00AC9224 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		9625892923CDBD6100AC9224 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				9625893323CE2CFC00AC9224 /* Api.swift */,
 				9625892A23CDBD8300AC9224 /* WeatherData.swift */,
 			);
 			path = Model;
@@ -264,6 +267,7 @@
 				9625892D23CE06FF00AC9224 /* SavedTableViewController.swift in Sources */,
 				9625891723CDA70E00AC9224 /* Weather_Logger.xcdatamodeld in Sources */,
 				9625893223CE242000AC9224 /* JsonParser.swift in Sources */,
+				9625893423CE2CFC00AC9224 /* Api.swift in Sources */,
 				9625890F23CDA70E00AC9224 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

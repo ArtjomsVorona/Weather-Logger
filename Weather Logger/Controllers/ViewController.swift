@@ -17,8 +17,6 @@ class ViewController: UIViewController {
     var userDefaults = UserDefaults.standard
     var jsonParser = JsonParser()
 
-    let basicApiUrlString = "https://api.openweathermap.org/data/2.5/weather?q="
-    let apiKey = "bba69a7f8abb8f448add461e26add23c"
     let latitude = "51.509865"
     let longitude = "-0.118092"
     
@@ -44,7 +42,9 @@ class ViewController: UIViewController {
     }
     
     func getWeatherData(latitude: String, longitude: String) {
-        let url = URL(string: basicApiUrlString)!
+        let urlString = Api().basicApiUrlString
+        let apiKey = Api().apiKey
+        let url = URL(string: urlString)!
         let parameters = ["appid": apiKey, "lat": latitude, "lon": longitude]
         
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
