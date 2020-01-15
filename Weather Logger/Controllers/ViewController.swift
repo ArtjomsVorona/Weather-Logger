@@ -20,8 +20,8 @@ class ViewController: UIViewController {
     
     var locationManager = CLLocationManager()
 
-    var latitude = ""
-    var longitude = ""
+    var latitude: String!
+    var longitude: String!
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
@@ -32,22 +32,30 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initiaViewlSetup()
-        locationManagerSetup()
+        initialViewSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        locationManagerSetup()
         loadData()
     }
-    
+
+    //MARK: IBActions
     @IBAction func updateAndSaveWetherDataTapped(_ sender: UIButton) {
         let urlString = Api().basicApiUrlString
         let apiKey = Api().apiKey
         let url = URL(string: urlString)!
-        let parameters = ["appid": apiKey, "lat": latitude, "lon": longitude]
+        
+        guard latitude != nil, longitude != nil else {
+            goToSettingsAlert(title: "Location is not available.", message: "Please check your location access settings.")
+            return
+        }
+        
+        let parameters = ["appid": apiKey, "lat": latitude!, "lon": longitude!]
         getWeatherData(url: url, parameters: parameters)
     }
-    
+
+    //MARK: Networking
     func getWeatherData(url: URL, parameters: [String: String]) {
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             if response.value != nil {
@@ -63,6 +71,7 @@ class ViewController: UIViewController {
         }
     }//end getWeatherData
     
+    //MARK: View functions
     func updateView(data: WeatherData) {
         cityNameLabel.text = data.name
         weatherDescriptionLabel.text = data.weatherDescription.capitalized
@@ -76,13 +85,14 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func initiaViewlSetup() {
+    func initialViewSetup() {
         cityNameLabel.text = "-"
         weatherDescriptionLabel.text = ""
         tempLabel.text = "- °C"
         requestTimeLabel.text = ""
     }
 
+    //MARK: User defaults functions
     func saveData(_ weatherData: WeatherData) {
         savedWeatherData.insert(weatherData, at: 0)
         userDefaults.set(try? PropertyListEncoder().encode(savedWeatherData), forKey: "savedWeatherData")
@@ -103,12 +113,14 @@ class ViewController: UIViewController {
 }//end class
 
 extension ViewController: CLLocationManagerDelegate {
-
     func locationManagerSetup() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
-            locationManager.requestWhenInUseAuthorization()
-            locationManager.startUpdatingLocation()
+        longitude = nil
+        longitude = nil
+    
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -124,10 +136,9 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location manager error: \(error.localizedDescription)")
-        goToSettingsAlert(title: "Location access error.", message: "Please check your location access settings.")
+        goToSettingsAlert(title: "Location is not available.", message: "Please check your location access settings.")
     }
-    
-}
+}//end extension - CLLocationManagerDelegate
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -155,5 +166,5 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-}//end extension
+}//end extension - TableView
 

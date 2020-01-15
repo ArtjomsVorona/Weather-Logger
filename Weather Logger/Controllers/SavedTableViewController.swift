@@ -23,6 +23,7 @@ class SavedTableViewController: UITableViewController {
         loadData()
     }
     
+    //MARK: UserDefaults methods
     func saveData() {
         userDefaults.set(try? PropertyListEncoder().encode(savedWeatherData), forKey: "savedWeatherData")
     }
@@ -42,7 +43,6 @@ class SavedTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedWeatherData.count
     }
@@ -82,5 +82,4 @@ class SavedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-
 }//end class
