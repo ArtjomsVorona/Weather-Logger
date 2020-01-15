@@ -7,6 +7,7 @@
 //
 
 import Alamofire
+import CoreLocation
 import UIKit
 
 class ViewController: UIViewController {
@@ -16,9 +17,11 @@ class ViewController: UIViewController {
     
     var userDefaults = UserDefaults.standard
     var jsonParser = JsonParser()
+    
+    var locationManager = CLLocationManager()
 
-    let latitude = "51.509865"
-    let longitude = "-0.118092"
+    var latitude = ""
+    var longitude = ""
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
@@ -29,7 +32,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        initialViewSetup()
+        initiaViewlSetup()
+        locationManagerSetup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -37,16 +41,14 @@ class ViewController: UIViewController {
     }
     
     @IBAction func updateAndSaveWetherDataTapped(_ sender: UIButton) {
-        print("Refresh tapped")
-        getWeatherData(latitude: latitude, longitude: longitude)
-    }
-    
-    func getWeatherData(latitude: String, longitude: String) {
         let urlString = Api().basicApiUrlString
         let apiKey = Api().apiKey
         let url = URL(string: urlString)!
         let parameters = ["appid": apiKey, "lat": latitude, "lon": longitude]
-        
+        getWeatherData(url: url, parameters: parameters)
+    }
+    
+    func getWeatherData(url: URL, parameters: [String: String]) {
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             if response.value != nil {
                 let jsonResult = self.jsonParser.parse(json: response.value!)
@@ -55,13 +57,13 @@ class ViewController: UIViewController {
                 
                 self.updateView(data: weatherData)
                 self.saveData(weatherData)
+            } else {
+                print("AF reuest error: \(String(describing: response.error))")
             }
         }
     }//end getWeatherData
     
     func updateView(data: WeatherData) {
-        print("Update view called")
-        
         cityNameLabel.text = data.name
         weatherDescriptionLabel.text = data.weatherDescription.capitalized
         tempLabel.text = String(Int(data.temp)) + " °C"
@@ -74,13 +76,13 @@ class ViewController: UIViewController {
         tableView.reloadData()
     }
     
-    func initialViewSetup() {
+    func initiaViewlSetup() {
         cityNameLabel.text = "-"
         weatherDescriptionLabel.text = ""
         tempLabel.text = "- °C"
         requestTimeLabel.text = ""
     }
-    
+
     func saveData(_ weatherData: WeatherData) {
         savedWeatherData.insert(weatherData, at: 0)
         userDefaults.set(try? PropertyListEncoder().encode(savedWeatherData), forKey: "savedWeatherData")
@@ -99,6 +101,33 @@ class ViewController: UIViewController {
         savedWeatherData = decodedData
     }
 }//end class
+
+extension ViewController: CLLocationManagerDelegate {
+
+    func locationManagerSetup() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let location = locations.last!
+
+        if location.horizontalAccuracy > 0 {
+            self.locationManager.stopUpdatingLocation()
+            longitude = String(location.coordinate.longitude)
+            latitude = String(location.coordinate.latitude)
+        }
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Location manager error: \(error.localizedDescription)")
+        goToSettingsAlert(title: "Location access error.", message: "Please check your location access settings.")
+    }
+    
+}
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
