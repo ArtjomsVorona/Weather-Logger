@@ -20,6 +20,7 @@
 		9625893223CE242000AC9224 /* JsonParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625893123CE242000AC9224 /* JsonParser.swift */; };
 		9625893423CE2CFC00AC9224 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625893323CE2CFC00AC9224 /* Api.swift */; };
 		963EBD5823CF3B5000CDAE0B /* Alert-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963EBD5723CF3B4F00CDAE0B /* Alert-Ext.swift */; };
+		963EBD5B23CF5C5A00CDAE0B /* Share-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		9625893123CE242000AC9224 /* JsonParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonParser.swift; sourceTree = "<group>"; };
 		9625893323CE2CFC00AC9224 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		963EBD5723CF3B4F00CDAE0B /* Alert-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert-Ext.swift"; sourceTree = "<group>"; };
+		963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Share-Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,9 +94,9 @@
 		9625890B23CDA70E00AC9224 /* Weather Logger */ = {
 			isa = PBXGroup;
 			children = (
-				9625892423CDA78400AC9224 /* Controllers */,
 				9625892323CDA77700AC9224 /* Delegates */,
 				963EBD5623CF3A1700CDAE0B /* Extensions */,
+				9625892423CDA78400AC9224 /* Controllers */,
 				9625892E23CE219900AC9224 /* Helpers */,
 				9625892923CDBD6100AC9224 /* Model */,
 				9625892523CDA78B00AC9224 /* Views */,
@@ -153,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				963EBD5723CF3B4F00CDAE0B /* Alert-Ext.swift */,
+				963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				9625891723CDA70E00AC9224 /* Weather_Logger.xcdatamodeld in Sources */,
 				963EBD5823CF3B5000CDAE0B /* Alert-Ext.swift in Sources */,
 				9625893223CE242000AC9224 /* JsonParser.swift in Sources */,
+				963EBD5B23CF5C5A00CDAE0B /* Share-Ext.swift in Sources */,
 				9625893423CE2CFC00AC9224 /* Api.swift in Sources */,
 				9625890F23CDA70E00AC9224 /* SceneDelegate.swift in Sources */,
 			);

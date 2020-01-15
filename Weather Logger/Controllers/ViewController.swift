@@ -13,6 +13,7 @@ import UIKit
 class ViewController: UIViewController {
 
     var detailsDict = [String: Int]()
+    var weatherData: WeatherData!
     var savedWeatherData = [WeatherData]()
     
     var userDefaults = UserDefaults.standard
@@ -41,6 +42,15 @@ class ViewController: UIViewController {
     }
 
     //MARK: IBActions
+    
+    @IBAction func shareBarButtonTapped(_ sender: UIBarButtonItem) {
+        if let weatherData = weatherData {
+            shareCurrent(weatherData: weatherData)
+        } else {
+            basicAlert(title: "No weather data to share.", message: nil)
+        }
+    }
+    
     @IBAction func updateAndSaveWetherDataTapped(_ sender: UIButton) {
         let urlString = Api().basicApiUrlString
         let apiKey = Api().apiKey
@@ -60,11 +70,11 @@ class ViewController: UIViewController {
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             if response.value != nil {
                 let jsonResult = self.jsonParser.parse(json: response.value!)
-                let weatherData = jsonResult.weatherData
+                self.weatherData = jsonResult.weatherData
                 self.detailsDict = jsonResult.detailsDict
                 
-                self.updateView(data: weatherData)
-                self.saveData(weatherData)
+                self.updateView(data: self.weatherData)
+                self.saveData(self.weatherData)
             } else {
                 print("AF reuest error: \(String(describing: response.error))")
             }
@@ -131,7 +141,6 @@ extension ViewController: CLLocationManagerDelegate {
             longitude = String(location.coordinate.longitude)
             latitude = String(location.coordinate.latitude)
         }
-        
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

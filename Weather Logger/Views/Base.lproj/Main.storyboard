@@ -144,7 +144,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="DHP-V3-jYZ"/>
+                    <navigationItem key="navigationItem" id="DHP-V3-jYZ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Elg-B0-J3v">
+                            <connections>
+                                <action selector="shareBarButtonTapped:" destination="BYZ-38-t0r" id="p5b-7B-CLb"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="cityNameLabel" destination="YeT-qL-1d7" id="0yX-8t-B7A"/>
                         <outlet property="requestTimeLabel" destination="FTD-QB-GxE" id="UYN-lp-KoF"/>
