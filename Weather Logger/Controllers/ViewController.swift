@@ -136,7 +136,6 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location manager error: \(error.localizedDescription)")
-        goToSettingsAlert(title: "Location is not available.", message: "Please check your location access settings.")
     }
 }//end extension - CLLocationManagerDelegate
 
