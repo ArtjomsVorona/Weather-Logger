@@ -56,6 +56,11 @@ class ViewController: UIViewController {
         let apiKey = Api().apiKey
         let url = URL(string: urlString)!
         
+        guard NetworkReachabilityManager()!.isReachable else {
+            goToSettingsAlert(title: "Network is not reacheable.", message: "Please check your internet connection.")
+            return
+        }
+        
         guard latitude != nil, longitude != nil else {
             goToSettingsAlert(title: "Location is not available.", message: "Please check your location access settings.")
             return
