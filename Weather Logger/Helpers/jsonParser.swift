@@ -47,16 +47,16 @@ class JsonParser{
                         weatherData.feelsLike = Int(value - diffFromFtoC)
                         detailsDict["Feels like °C"] = Int(value - diffFromFtoC)
                     case "temp_min":
-                        weatherData.feelsLike = Int(value - diffFromFtoC)
+                        weatherData.tempMin = Int(value - diffFromFtoC)
                         detailsDict["Temperature min °C"] = Int(value - diffFromFtoC)
                     case "temp_max":
                         weatherData.tempMax = Int(value - diffFromFtoC)
                         detailsDict["Temperature max °C"] = Int(value - diffFromFtoC)
                     case "pressure":
-                        weatherData.tempMax = Int(value)
+                        weatherData.pressure = Int(value)
                         detailsDict["Pressure"] = Int(value)
                     case "humidity":
-                        weatherData.tempMax = Int(value)
+                        weatherData.humidity = Int(value)
                         detailsDict["Humidity"] = Int(value)
                     default:
                         break
