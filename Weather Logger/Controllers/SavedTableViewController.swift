@@ -76,6 +76,7 @@ class SavedTableViewController: UITableViewController {
                 self.savedWeatherData.remove(at: indexPath.row)
                 tableView.reloadData()
                 self.saveData()
+                self.autoDismissAlert(title: "Deleted!")
             }))
             
             present(alert, animated: true, completion: nil)

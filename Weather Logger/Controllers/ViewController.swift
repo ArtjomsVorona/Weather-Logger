@@ -98,6 +98,8 @@ class ViewController: UIViewController {
         
         detailsUpdate()
         tableView.reloadData()
+        
+        autoDismissAlert(title: "Saved!")
     }
     
     func detailsUpdate() {
