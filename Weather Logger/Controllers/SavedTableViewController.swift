@@ -55,7 +55,10 @@ class SavedTableViewController: UITableViewController {
         cell.textLabel?.text = "\(weatherData.name) \(weatherData.temp) °C"
         cell.textLabel?.textColor = #colorLiteral(red: 0.3859816492, green: 0.5554968715, blue: 0.6556989551, alpha: 1)
         
-        cell.detailTextLabel?.text = "\(weatherData.requestTime!)"
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        cell.detailTextLabel?.text = dateFormatter.string(from: weatherData.requestTime)
         cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4656865001, green: 0.7002133727, blue: 0.829667151, alpha: 1)
         
         if weatherData.weatherIcon != "" {

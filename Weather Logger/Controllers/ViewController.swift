@@ -93,9 +93,9 @@ class ViewController: UIViewController {
         tempLabel.text = String(Int(data.temp)) + " °C"
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .full
-//        requestTimeLabel.text = dateFormatter.string(from: data.requestTime)
-        requestTimeLabel.text = "\(data.requestTime!)"
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .short
+        requestTimeLabel.text = dateFormatter.string(from: data.requestTime)
         
         tableView.reloadData()
     }
