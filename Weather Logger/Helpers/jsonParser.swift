@@ -11,14 +11,13 @@ import Foundation
 class JsonParser{
     let diffFromFtoC = 273.15
     
-    func parse(json: Any) -> (weatherData: WeatherData, detailsDict: [String: Int]) {
+    func parse(json: Any) -> WeatherData {
         var weatherData = WeatherData()
-        var detailsDict = [String: Int]()
     //        print(json)
             
             guard let dictionary = json as? [String: Any] else {
                 print("Unable to parse json")
-                return (weatherData, detailsDict)
+                return weatherData
             }
             
             if let weatherArray = dictionary["weather"] as? [[String: Any]] {
@@ -45,19 +44,14 @@ class JsonParser{
                         weatherData.temp = Int(value - diffFromFtoC)
                     case "feels_like":
                         weatherData.feelsLike = Int(value - diffFromFtoC)
-                        detailsDict["Feels like °C"] = Int(value - diffFromFtoC)
                     case "temp_min":
                         weatherData.tempMin = Int(value - diffFromFtoC)
-                        detailsDict["Temperature min °C"] = Int(value - diffFromFtoC)
                     case "temp_max":
                         weatherData.tempMax = Int(value - diffFromFtoC)
-                        detailsDict["Temperature max °C"] = Int(value - diffFromFtoC)
                     case "pressure":
                         weatherData.pressure = Int(value)
-                        detailsDict["Pressure"] = Int(value)
                     case "humidity":
                         weatherData.humidity = Int(value)
-                        detailsDict["Humidity"] = Int(value)
                     default:
                         break
                     }
@@ -71,7 +65,7 @@ class JsonParser{
             }
             
             weatherData.requestTime = Date()
-            return (weatherData, detailsDict)
+            return weatherData
 
         }//end parse
 }

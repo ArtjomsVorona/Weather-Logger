@@ -57,7 +57,7 @@ class SavedTableViewController: UITableViewController {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.timeStyle = .medium
         cell.detailTextLabel?.text = dateFormatter.string(from: weatherData.requestTime)
         cell.detailTextLabel?.textColor = #colorLiteral(red: 0.4656865001, green: 0.7002133727, blue: 0.829667151, alpha: 1)
         

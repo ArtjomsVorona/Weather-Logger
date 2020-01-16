@@ -74,9 +74,8 @@ class ViewController: UIViewController {
     func getWeatherData(url: URL, parameters: [String: String]) {
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             if response.value != nil {
-                let jsonResult = self.jsonParser.parse(json: response.value!)
-                self.weatherData = jsonResult.weatherData
-                self.detailsDict = jsonResult.detailsDict
+                self.weatherData = self.jsonParser.parse(json: response.value!)
+//                self.weatherData = jsonResult.weatherData
                 
                 self.updateView(data: self.weatherData)
                 self.saveData(self.weatherData)
@@ -94,10 +93,19 @@ class ViewController: UIViewController {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.timeStyle = .medium
         requestTimeLabel.text = dateFormatter.string(from: data.requestTime)
         
+        detailsUpdate()
         tableView.reloadData()
+    }
+    
+    func detailsUpdate() {
+            detailsDict["Feels like °C"] = weatherData.feelsLike
+            detailsDict["Temperature min °C"] = weatherData.tempMin
+            detailsDict["Temperature max °C"] = weatherData.tempMax
+            detailsDict["Pressure"] = weatherData.pressure
+            detailsDict["Humidity"] = weatherData.humidity
     }
     
     func initialViewSetup() {
@@ -106,6 +114,7 @@ class ViewController: UIViewController {
         tempLabel.text = "- °C"
         requestTimeLabel.text = ""
     }
+
 
     //MARK: User defaults functions
     func saveData(_ weatherData: WeatherData) {
@@ -161,11 +170,14 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailsCell", for: indexPath)
         
-        cell.textLabel?.text = Array(detailsDict.keys)[indexPath.row]
+        let titleArray = Array(detailsDict.keys.sorted())
+        let key = titleArray[indexPath.row]
+        
+        cell.textLabel?.text = key
         cell.textLabel?.textColor = #colorLiteral(red: 0.4656865001, green: 0.7002133727, blue: 0.829667151, alpha: 1)
         cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
         
-        cell.detailTextLabel?.text = String(Array(detailsDict.values)[indexPath.row])
+        cell.detailTextLabel?.text = String(detailsDict[key]!)
         cell.detailTextLabel?.textColor = #colorLiteral(red: 0.3859816492, green: 0.5554968715, blue: 0.6556989551, alpha: 1)
         cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
         
