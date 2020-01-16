@@ -12,15 +12,36 @@ class SavedTableViewController: UITableViewController {
     
     let userDefaults = UserDefaults.standard
     var savedWeatherData = [WeatherData]()
+    
+    let removeAllBarButtonItem = UIBarButtonItem.init(title: "Remove all", style: .plain, target: self, action: #selector(deleteAll))
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-         self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.leftBarButtonItem = self.editButtonItem
         loadData()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+    }
+    
+    //MARK: Methods
+    
+    @objc func deleteAll() {
+        let alert = UIAlertController(title: "Are you sure you want to delete all data?", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert) in
+            self.savedWeatherData.removeAll()
+            self.tableView.reloadData()
+            self.saveData()
+            super.setEditing(false, animated: true)
+            self.navigationItem.rightBarButtonItem = nil
+            self.autoDismissAlert(title: "Deleted!")
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
     
     //MARK: UserDefaults methods
@@ -76,6 +97,10 @@ class SavedTableViewController: UITableViewController {
                 self.savedWeatherData.remove(at: indexPath.row)
                 tableView.reloadData()
                 self.saveData()
+                if self.savedWeatherData.count == 0 {
+                    super.setEditing(false, animated: true)
+                    self.navigationItem.rightBarButtonItem = nil
+                }
                 self.autoDismissAlert(title: "Deleted!")
             }))
             
@@ -86,4 +111,18 @@ class SavedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
+    
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        if editing {
+            super.setEditing(true, animated: true)
+            if savedWeatherData.count > 1 {
+                self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "Remove all", style: .plain, target: self, action: #selector(deleteAll))
+            }
+        } else {
+            super.setEditing(false, animated: true)
+            self.navigationItem.rightBarButtonItem = nil
+        }
+        
+    }
+    
 }//end class
