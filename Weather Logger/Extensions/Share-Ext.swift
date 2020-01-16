@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     func shareCurrent(weatherData: WeatherData) {
-        let text = "Hey! \nLook, current temperature in \(weatherData.name) is \(weatherData.temp) °C."
+        let text = "Hey! \nCurrent temperature in \(weatherData.name) is \(weatherData.temp) °C."
         let activityVC = UIActivityViewController(activityItems: [text], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
     }
