@@ -101,11 +101,11 @@ class ViewController: UIViewController {
     }
     
     func detailsUpdate() {
-            detailsDict["Feels like °C"] = weatherData.feelsLike
-            detailsDict["Temperature min °C"] = weatherData.tempMin
-            detailsDict["Temperature max °C"] = weatherData.tempMax
-            detailsDict["Pressure"] = weatherData.pressure
-            detailsDict["Humidity"] = weatherData.humidity
+        detailsDict["Feels like °C"] = weatherData.feelsLike
+        detailsDict["Temperature min °C"] = weatherData.tempMin
+        detailsDict["Temperature max °C"] = weatherData.tempMax
+        detailsDict["Pressure hPa"] = weatherData.pressure
+        detailsDict["Humidity %"] = weatherData.humidity
     }
     
     func initialViewSetup() {
@@ -175,11 +175,11 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.textLabel?.text = key
         cell.textLabel?.textColor = #colorLiteral(red: 0.4656865001, green: 0.7002133727, blue: 0.829667151, alpha: 1)
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 12)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 14)
         
         cell.detailTextLabel?.text = String(detailsDict[key]!)
         cell.detailTextLabel?.textColor = #colorLiteral(red: 0.3859816492, green: 0.5554968715, blue: 0.6556989551, alpha: 1)
-        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 15)
+        cell.detailTextLabel?.font = UIFont.systemFont(ofSize: 17)
         
         return cell
     }

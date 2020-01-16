@@ -21,6 +21,7 @@
 		9625893423CE2CFC00AC9224 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625893323CE2CFC00AC9224 /* Api.swift */; };
 		963EBD5823CF3B5000CDAE0B /* Alert-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963EBD5723CF3B4F00CDAE0B /* Alert-Ext.swift */; };
 		963EBD5B23CF5C5A00CDAE0B /* Share-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */; };
+		965E126523D0A1CA0082C093 /* BounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965E126423D0A1CA0082C093 /* BounceButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		9625893323CE2CFC00AC9224 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		963EBD5723CF3B4F00CDAE0B /* Alert-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alert-Ext.swift"; sourceTree = "<group>"; };
 		963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Share-Ext.swift"; sourceTree = "<group>"; };
+		965E126423D0A1CA0082C093 /* BounceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		9625890B23CDA70E00AC9224 /* Weather Logger */ = {
 			isa = PBXGroup;
 			children = (
+				965E126323D0A1AE0082C093 /* Designable */,
 				9625892323CDA77700AC9224 /* Delegates */,
 				963EBD5623CF3A1700CDAE0B /* Extensions */,
 				9625892423CDA78400AC9224 /* Controllers */,
@@ -158,6 +161,14 @@
 				963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		965E126323D0A1AE0082C093 /* Designable */ = {
+			isa = PBXGroup;
+			children = (
+				965E126423D0A1CA0082C093 /* BounceButton.swift */,
+			);
+			path = Designable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -282,6 +293,7 @@
 				9625891723CDA70E00AC9224 /* Weather_Logger.xcdatamodeld in Sources */,
 				963EBD5823CF3B5000CDAE0B /* Alert-Ext.swift in Sources */,
 				9625893223CE242000AC9224 /* JsonParser.swift in Sources */,
+				965E126523D0A1CA0082C093 /* BounceButton.swift in Sources */,
 				963EBD5B23CF5C5A00CDAE0B /* Share-Ext.swift in Sources */,
 				9625893423CE2CFC00AC9224 /* Api.swift in Sources */,
 				9625890F23CDA70E00AC9224 /* SceneDelegate.swift in Sources */,
