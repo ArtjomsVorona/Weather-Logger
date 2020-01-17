@@ -101,7 +101,7 @@ class SavedTableViewController: UITableViewController {
                     super.setEditing(false, animated: true)
                     self.navigationItem.rightBarButtonItem = nil
                 }
-                self.autoDismissAlert(title: "Deleted!")
+                self.autoDismissAlert(title: "Deleted")
             }))
             
             present(alert, animated: true, completion: nil)
@@ -111,10 +111,10 @@ class SavedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        guard let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsTVC") as? DetailsTableViewController else { return }
-        detailsVC.weatherData = savedWeatherData[indexPath.row]
-        
-        present(detailsVC, animated: true, completion: nil)
+//        guard let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsTVC") as? DetailsTableViewController else { return }
+//        detailsVC.weatherData = savedWeatherData[indexPath.row]
+//
+//        present(detailsVC, animated: true, completion: nil)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -128,6 +128,19 @@ class SavedTableViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem = nil
         }
         
+    }
+    
+    //MARK: Navigations
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "DetailsSegueTVC" else { return }
+        
+        guard let navController = segue.destination as? UINavigationController else { return }
+        guard let detailsTableVC = navController.topViewController as? DetailsTableViewController else { return }
+        
+        if let index = tableView.indexPathForSelectedRow?.row {
+            detailsTableVC.weatherData = savedWeatherData[index]
+        }
+
     }
     
 }//end class
