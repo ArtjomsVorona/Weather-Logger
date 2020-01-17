@@ -141,6 +141,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="DHP-V3-jYZ">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="Elg-B0-J3v">
+                            <color key="tintColor" red="0.37774282689999999" green="0.55542725319999997" blue="0.65978997949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <action selector="shareBarButtonTapped:" destination="BYZ-38-t0r" id="p5b-7B-CLb"/>
                             </connections>
@@ -260,6 +261,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FvL-6k-08h">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.43676549199999998" green="0.69569927450000002" blue="0.85414606329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -279,6 +281,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Vba-BM-P6J">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.37774282689999999" green="0.55542725319999997" blue="0.65978997949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -316,6 +319,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="H3l-Yi-hI5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.37774282689999999" green="0.55542725319999997" blue="0.65978997949999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
