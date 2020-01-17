@@ -26,5 +26,5 @@ struct WeatherData: Codable {
     var name: String = ""
     
     //additional data, not from weather api json
-    var requestTime: Date!
+    var requestTime = Date()
 }

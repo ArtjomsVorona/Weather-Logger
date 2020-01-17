@@ -110,6 +110,11 @@ class SavedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        guard let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsTVC") as? DetailsTableViewController else { return }
+        detailsVC.weatherData = savedWeatherData[indexPath.row]
+        
+        present(detailsVC, animated: true, completion: nil)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {

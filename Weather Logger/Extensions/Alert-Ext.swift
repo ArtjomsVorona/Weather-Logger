@@ -36,7 +36,7 @@ extension UIViewController {
     func autoDismissAlert(title: String) {
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
         
-        let dismissTime = DispatchTime.now() + 0.8
+        let dismissTime = DispatchTime.now() + 0.7
         DispatchQueue.main.asyncAfter(deadline: dismissTime) {
             alert.dismiss(animated: true, completion: nil)
         }
