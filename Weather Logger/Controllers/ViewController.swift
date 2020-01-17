@@ -20,9 +20,6 @@ class ViewController: UIViewController {
     var jsonParser = JsonParser()
     
     var locationManager = CLLocationManager()
-
-    var latitude: String!
-    var longitude: String!
     
     @IBOutlet weak var cityNameLabel: UILabel!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
@@ -61,26 +58,42 @@ class ViewController: UIViewController {
             return
         }
         
-        guard latitude != nil, longitude != nil else {
+        guard let location = locationManager.location else {
             goToSettingsAlert(title: "Location is not available.", message: "Please check your location access settings.")
             return
         }
         
-        let parameters = ["appid": apiKey, "lat": latitude!, "lon": longitude!]
-        getWeatherData(url: url, parameters: parameters)
-    }
+        let geoCoder = CLGeocoder()
+        geoCoder.reverseGeocodeLocation(location) { (placemark, error) in
+            if error != nil {
+                print("GeoCoder error: \(String(describing: error?.localizedDescription))")
+            }
+        
+            guard let placemark = placemark else {
+                print("Unable to find placemark.")
+                return
+            }
+            
+            guard let cityName = placemark[0].locality else {
+                print("Unable to return city name in placemark.")
+                return
+            }
+            
+            let parameters = ["appid": apiKey, "q": cityName]
+            self.getWeatherData(url: url, parameters: parameters)
+        }
+    }//end updateAndSaveWetherDataTapped
 
     //MARK: Networking
     func getWeatherData(url: URL, parameters: [String: String]) {
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
             if response.value != nil {
                 self.weatherData = self.jsonParser.parse(json: response.value!)
-//                self.weatherData = jsonResult.weatherData
                 
                 self.updateView(data: self.weatherData)
                 self.saveData(self.weatherData)
             } else {
-                print("AF reuest error: \(String(describing: response.error))")
+                print("AF request error: \(String(describing: response.error))")
             }
         }
     }//end getWeatherData
@@ -140,11 +153,9 @@ class ViewController: UIViewController {
 
 extension ViewController: CLLocationManagerDelegate {
     func locationManagerSetup() {
-        longitude = nil
-        longitude = nil
     
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
@@ -154,8 +165,6 @@ extension ViewController: CLLocationManagerDelegate {
 
         if location.horizontalAccuracy > 0 {
             self.locationManager.stopUpdatingLocation()
-            longitude = String(location.coordinate.longitude)
-            latitude = String(location.coordinate.latitude)
         }
     }
     

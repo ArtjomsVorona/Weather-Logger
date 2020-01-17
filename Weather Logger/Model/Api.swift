@@ -9,6 +9,6 @@
 import Foundation
 
 class Api {
-    let basicApiUrlString = "https://api.openweathermap.org/data/2.5/weather?q="
+    let basicApiUrlString = "https://api.openweathermap.org/data/2.5/weather?"
     let apiKey = "bba69a7f8abb8f448add461e26add23c"
 }
