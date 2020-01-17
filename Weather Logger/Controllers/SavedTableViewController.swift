@@ -28,7 +28,6 @@ class SavedTableViewController: UITableViewController {
     }
     
     //MARK: Methods
-    
     @objc func deleteAll() {
         let alert = UIAlertController(title: "Are you sure you want to delete all data?", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
@@ -110,11 +109,6 @@ class SavedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-//        guard let detailsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "DetailsTVC") as? DetailsTableViewController else { return }
-//        detailsVC.weatherData = savedWeatherData[indexPath.row]
-//
-//        present(detailsVC, animated: true, completion: nil)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -127,7 +121,6 @@ class SavedTableViewController: UITableViewController {
             super.setEditing(false, animated: true)
             self.navigationItem.rightBarButtonItem = nil
         }
-        
     }
     
     //MARK: Navigations
@@ -140,7 +133,6 @@ class SavedTableViewController: UITableViewController {
         if let index = tableView.indexPathForSelectedRow?.row {
             detailsTableVC.weatherData = savedWeatherData[index]
         }
-
     }
     
 }//end class

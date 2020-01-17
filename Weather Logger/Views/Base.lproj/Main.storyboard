@@ -129,13 +129,18 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Uzh-aU-GE7"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="YmO-Q7-xgl">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="qWr-pe-PQd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="67t-Fr-1JC"/>
                             <constraint firstItem="qWr-pe-PQd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6vg-GY-C8M"/>
+                            <constraint firstItem="YmO-Q7-xgl" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QOp-w7-5Fr"/>
                             <constraint firstItem="qWr-pe-PQd" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="VYv-hh-ZnM"/>
                             <constraint firstItem="qWr-pe-PQd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="X2d-AW-pdG"/>
+                            <constraint firstItem="YmO-Q7-xgl" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="n0t-Cs-jSP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -148,6 +153,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="YmO-Q7-xgl" id="0DI-AX-u04"/>
                         <outlet property="cityNameLabel" destination="YeT-qL-1d7" id="0yX-8t-B7A"/>
                         <outlet property="requestTimeLabel" destination="FTD-QB-GxE" id="UYN-lp-KoF"/>
                         <outlet property="tableView" destination="qWr-pe-PQd" id="uat-fV-QTW"/>
@@ -252,11 +258,11 @@
             </objects>
             <point key="canvasLocation" x="5486.9565217391309" y="875.89285714285711"/>
         </scene>
-        <!--Item-->
+        <!--Current-->
         <scene sceneID="d8P-jT-BIh">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cLo-uO-H8w" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="cloud.sun" catalog="system" id="MHe-TR-vT3"/>
+                    <tabBarItem key="tabBarItem" title="Current" image="cloud.sun" catalog="system" id="MHe-TR-vT3"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FvL-6k-08h">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

@@ -26,6 +26,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var tempLabel: UILabel!
     @IBOutlet weak var requestTimeLabel: UILabel!
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -39,7 +41,6 @@ class ViewController: UIViewController {
     }
 
     //MARK: IBActions
-    
     @IBAction func shareBarButtonTapped(_ sender: UIBarButtonItem) {
         if let weatherData = weatherData {
             shareCurrent(weatherData: weatherData)
@@ -49,17 +50,21 @@ class ViewController: UIViewController {
     }
     
     @IBAction func updateAndSaveWetherDataTapped(_ sender: UIButton) {
+        activityIndicator.startAnimating()
+        
         let urlString = Api().basicApiUrlString
         let apiKey = Api().apiKey
         let url = URL(string: urlString)!
         
         guard NetworkReachabilityManager()!.isReachable else {
             goToSettingsAlert(title: "Network is not reacheable.", message: "Please check your internet connection.")
+            activityIndicator.stopAnimating()
             return
         }
         
         guard let location = locationManager.location else {
             goToSettingsAlert(title: "Location is not available.", message: "Please check your location access settings.")
+            activityIndicator.stopAnimating()
             return
         }
         
@@ -71,11 +76,13 @@ class ViewController: UIViewController {
         
             guard let placemark = placemark else {
                 print("Unable to find placemark.")
+                self.activityIndicator.stopAnimating()
                 return
             }
             
             guard let cityName = placemark[0].locality else {
                 print("Unable to return city name in placemark.")
+                self.activityIndicator.stopAnimating()
                 return
             }
             
@@ -112,6 +119,7 @@ class ViewController: UIViewController {
         detailsUpdate()
         tableView.reloadData()
         
+        activityIndicator.stopAnimating()
         autoDismissAlert(title: "Saved")
     }
     
@@ -129,7 +137,6 @@ class ViewController: UIViewController {
         tempLabel.text = "- °C"
         requestTimeLabel.text = ""
     }
-
 
     //MARK: User defaults functions
     func saveData(_ weatherData: WeatherData) {
