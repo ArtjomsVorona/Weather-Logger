@@ -12,7 +12,6 @@
 		9625890F23CDA70E00AC9224 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625890E23CDA70E00AC9224 /* SceneDelegate.swift */; };
 		9625891123CDA70E00AC9224 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625891023CDA70E00AC9224 /* ViewController.swift */; };
 		9625891423CDA70E00AC9224 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9625891223CDA70E00AC9224 /* Main.storyboard */; };
-		9625891723CDA70E00AC9224 /* Weather_Logger.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9625891523CDA70E00AC9224 /* Weather_Logger.xcdatamodeld */; };
 		9625891923CDA73800AC9224 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9625891823CDA73800AC9224 /* Assets.xcassets */; };
 		9625891C23CDA73800AC9224 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9625891A23CDA73800AC9224 /* LaunchScreen.storyboard */; };
 		9625892B23CDBD8300AC9224 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9625892A23CDBD8300AC9224 /* WeatherData.swift */; };
@@ -34,7 +33,6 @@
 		9625890E23CDA70E00AC9224 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9625891023CDA70E00AC9224 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9625891323CDA70E00AC9224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		9625891623CDA70E00AC9224 /* Weather_Logger.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Weather_Logger.xcdatamodel; sourceTree = "<group>"; };
 		9625891823CDA73800AC9224 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9625891B23CDA73800AC9224 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9625891D23CDA73800AC9224 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,7 +105,6 @@
 				9625892523CDA78B00AC9224 /* Views */,
 				9625891823CDA73800AC9224 /* Assets.xcassets */,
 				9625891D23CDA73800AC9224 /* Info.plist */,
-				9625891523CDA70E00AC9224 /* Weather_Logger.xcdatamodeld */,
 			);
 			path = "Weather Logger";
 			sourceTree = "<group>";
@@ -294,7 +291,6 @@
 				9625890D23CDA70E00AC9224 /* AppDelegate.swift in Sources */,
 				9625892D23CE06FF00AC9224 /* SavedTableViewController.swift in Sources */,
 				96C66F9823D1A9FD0079FC6E /* DetailsTableViewController.swift in Sources */,
-				9625891723CDA70E00AC9224 /* Weather_Logger.xcdatamodeld in Sources */,
 				963EBD5823CF3B5000CDAE0B /* Alert-Ext.swift in Sources */,
 				9625893223CE242000AC9224 /* JsonParser.swift in Sources */,
 				965E126523D0A1CA0082C093 /* BounceButton.swift in Sources */,
@@ -500,19 +496,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		9625891523CDA70E00AC9224 /* Weather_Logger.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9625891623CDA70E00AC9224 /* Weather_Logger.xcdatamodel */,
-			);
-			currentVersion = 9625891623CDA70E00AC9224 /* Weather_Logger.xcdatamodel */;
-			path = Weather_Logger.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 9625890123CDA70D00AC9224 /* Project object */;
 }

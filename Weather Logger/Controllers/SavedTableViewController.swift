@@ -95,7 +95,7 @@ class SavedTableViewController: UITableViewController {
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (alert) in
                 self.savedWeatherData.remove(at: indexPath.row)
-                tableView.reloadData()
+                tableView.deleteRows(at: [indexPath], with: .automatic)
                 self.saveData()
                 if self.savedWeatherData.count == 0 {
                     super.setEditing(false, animated: true)
