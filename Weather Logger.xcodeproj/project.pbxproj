@@ -22,6 +22,7 @@
 		963EBD5B23CF5C5A00CDAE0B /* Share-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */; };
 		965E126523D0A1CA0082C093 /* BounceButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 965E126423D0A1CA0082C093 /* BounceButton.swift */; };
 		96C66F9823D1A9FD0079FC6E /* DetailsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96C66F9723D1A9FD0079FC6E /* DetailsTableViewController.swift */; };
+		ACE4A67423D4C6AF009C7D5B /* PropertyNames-Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE4A67323D4C6AF009C7D5B /* PropertyNames-Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Share-Ext.swift"; sourceTree = "<group>"; };
 		965E126423D0A1CA0082C093 /* BounceButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BounceButton.swift; sourceTree = "<group>"; };
 		96C66F9723D1A9FD0079FC6E /* DetailsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsTableViewController.swift; sourceTree = "<group>"; };
+		ACE4A67323D4C6AF009C7D5B /* PropertyNames-Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PropertyNames-Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			children = (
 				963EBD5723CF3B4F00CDAE0B /* Alert-Ext.swift */,
 				963EBD5A23CF5C5A00CDAE0B /* Share-Ext.swift */,
+				ACE4A67323D4C6AF009C7D5B /* PropertyNames-Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9625891123CDA70E00AC9224 /* ViewController.swift in Sources */,
+				ACE4A67423D4C6AF009C7D5B /* PropertyNames-Ext.swift in Sources */,
 				9625892B23CDBD8300AC9224 /* WeatherData.swift in Sources */,
 				9625890D23CDA70E00AC9224 /* AppDelegate.swift in Sources */,
 				9625892D23CE06FF00AC9224 /* SavedTableViewController.swift in Sources */,

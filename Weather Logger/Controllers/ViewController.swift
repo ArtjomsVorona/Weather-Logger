@@ -182,7 +182,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         let titleArray = Array(detailsDict.keys.sorted())
         let key = titleArray[indexPath.row]
-        
+
         cell.textLabel?.text = key
         cell.textLabel?.textColor = #colorLiteral(red: 0.4656865001, green: 0.7002133727, blue: 0.829667151, alpha: 1)
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)

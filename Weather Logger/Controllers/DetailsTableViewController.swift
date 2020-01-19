@@ -24,7 +24,8 @@ class DetailsTableViewController: UITableViewController {
         
         let mirror = Mirror(reflecting: weatherData)
         for child in mirror.children {
-            detailsDict[child.label!] = "\(child.value)"
+            let key = getReadableProperty(name: child.label!)
+            detailsDict[key] = "\(child.value)"
         }
         
         tableView.reloadData()
