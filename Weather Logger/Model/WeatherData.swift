@@ -27,4 +27,17 @@ struct WeatherData: Codable {
     
     //additional data, not from weather api json
     var requestTime = Date()
-}
+    
+    func getDetailsDict() -> [String: String] {
+        var detailsDict = [String: String]()
+        let namesManager = PropertyNamesManager()
+        
+        let mirror = Mirror(reflecting: self)
+        for child in mirror.children {
+            let key = namesManager.getReadableProperty(name: child.label!)
+            detailsDict[key] = "\(child.value)"
+        }
+        return detailsDict
+    }
+    
+}//end struct

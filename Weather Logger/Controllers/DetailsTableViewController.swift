@@ -16,20 +16,14 @@ class DetailsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        prepareToDisplay()
-    }
-    
-    func prepareToDisplay() {
         guard let weatherData = weatherData else { return }
         
-        let mirror = Mirror(reflecting: weatherData)
-        for child in mirror.children {
-            let key = getReadableProperty(name: child.label!)
-            detailsDict[key] = "\(child.value)"
-        }
+        detailsDict = weatherData.getDetailsDict()
         
         tableView.reloadData()
     }
+    
+
 
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
