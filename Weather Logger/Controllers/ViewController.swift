@@ -12,9 +12,9 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var detailsDict = [String: Int]()
     var weatherData: WeatherData!
     var savedWeatherData = [WeatherData]()
+    var detailsDict = [String: String]()
     
     var userDefaults = UserDefaults.standard
     var jsonParser = JsonParser()
@@ -124,11 +124,13 @@ class ViewController: UIViewController {
     }
     
     func detailsUpdate() {
-        detailsDict["Feels like °C"] = weatherData.feelsLike
-        detailsDict["Temperature min °C"] = weatherData.tempMin
-        detailsDict["Temperature max °C"] = weatherData.tempMax
-        detailsDict["Pressure hPa"] = weatherData.pressure
-        detailsDict["Humidity %"] = weatherData.humidity
+        detailsDict = weatherData.getDetailsDict()
+        
+        for (key, _) in detailsDict {
+            if key != "Feels like °C", key != "Temperature min °C", key != "Temperature max °C", key != "Pressure hPa", key != "Humidity %" {
+                detailsDict.removeValue(forKey: key)
+            }
+        }
     }
     
     func initialViewSetup() {
@@ -160,7 +162,6 @@ class ViewController: UIViewController {
 
 extension ViewController: CLLocationManagerDelegate {
     func locationManagerSetup() {
-    
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         locationManager.requestWhenInUseAuthorization()
