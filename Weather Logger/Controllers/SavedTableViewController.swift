@@ -14,7 +14,7 @@ class SavedTableViewController: UITableViewController {
     var savedWeatherData = [WeatherData]()
     
     let removeAllBarButtonItem = UIBarButtonItem.init(title: "Remove all", style: .plain, target: self, action: #selector(deleteAll))
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -22,9 +22,6 @@ class SavedTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.leftBarButtonItem = self.editButtonItem
         loadData()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
     }
     
     //MARK: Methods
@@ -61,15 +58,14 @@ class SavedTableViewController: UITableViewController {
         savedWeatherData = decodedData
         tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return savedWeatherData.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SavedCell", for: indexPath)
-
         let weatherData = savedWeatherData[indexPath.row]
         
         cell.textLabel?.text = "\(weatherData.name) \(weatherData.temp) °C"
@@ -84,10 +80,10 @@ class SavedTableViewController: UITableViewController {
         if weatherData.weatherIcon != "" {
             cell.imageView?.image = UIImage(named: weatherData.weatherIcon)
         }
-
+        
         return cell
     }
-
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let alert = UIAlertController(title: "Are you sure you want to delete this weather data?", message: nil, preferredStyle: .alert)
@@ -126,7 +122,6 @@ class SavedTableViewController: UITableViewController {
     //MARK: Navigations
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "DetailsSegueTVC" else { return }
-        
         guard let navController = segue.destination as? UINavigationController else { return }
         guard let detailsTableVC = navController.topViewController as? DetailsTableViewController else { return }
         

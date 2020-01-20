@@ -11,7 +11,7 @@ import CoreLocation
 import UIKit
 
 class ViewController: UIViewController {
-
+    
     var weatherData: WeatherData!
     var savedWeatherData = [WeatherData]()
     var detailsDict = [String: String]()
@@ -27,7 +27,6 @@ class ViewController: UIViewController {
     @IBOutlet weak var requestTimeLabel: UILabel!
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -39,7 +38,7 @@ class ViewController: UIViewController {
         locationManagerSetup()
         loadData()
     }
-
+    
     //MARK: IBActions
     @IBAction func shareBarButtonTapped(_ sender: UIBarButtonItem) {
         if let weatherData = weatherData {
@@ -73,7 +72,7 @@ class ViewController: UIViewController {
             if error != nil {
                 print("GeoCoder error: \(String(describing: error?.localizedDescription))")
             }
-        
+            
             guard let placemark = placemark else {
                 print("Unable to find placemark.")
                 self.activityIndicator.stopAnimating()
@@ -90,7 +89,7 @@ class ViewController: UIViewController {
             self.getWeatherData(url: url, parameters: parameters)
         }
     }//end updateAndSaveWetherDataTapped
-
+    
     //MARK: Networking
     func getWeatherData(url: URL, parameters: [String: String]) {
         AF.request(url, method: .get, parameters: parameters).responseJSON { (response) in
@@ -125,7 +124,6 @@ class ViewController: UIViewController {
     
     func detailsUpdate() {
         detailsDict = weatherData.getDetailsDict()
-        
         for (key, _) in detailsDict {
             if key != "Feels like °C", key != "Temperature min °C", key != "Temperature max °C", key != "Pressure hPa", key != "Humidity %" {
                 detailsDict.removeValue(forKey: key)
@@ -139,7 +137,7 @@ class ViewController: UIViewController {
         tempLabel.text = "- °C"
         requestTimeLabel.text = ""
     }
-
+    
     //MARK: User defaults functions
     func saveData(_ weatherData: WeatherData) {
         savedWeatherData.insert(weatherData, at: 0)
@@ -167,7 +165,7 @@ extension ViewController: CLLocationManagerDelegate {
         locationManager.requestWhenInUseAuthorization()
         locationManager.startUpdatingLocation()
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("Location manager error: \(error.localizedDescription)")
     }
@@ -180,10 +178,9 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "detailsCell", for: indexPath)
-        
         let titleArray = Array(detailsDict.keys.sorted())
         let key = titleArray[indexPath.row]
-
+        
         cell.textLabel?.text = key
         cell.textLabel?.textColor = #colorLiteral(red: 0.4656865001, green: 0.7002133727, blue: 0.829667151, alpha: 1)
         cell.textLabel?.font = UIFont.systemFont(ofSize: 14)

@@ -41,4 +41,4 @@ class PropertyNamesManager {
         }
         return returnString
     }
-}
+}//end class
