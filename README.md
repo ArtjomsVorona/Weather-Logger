@@ -8,5 +8,7 @@ Functionality:
 - All data stored using UserDefaults.
 - Alamofire is used for networking request.
 - Current weather data is retrieved for user current location name, which is provided using CLLocationManager.
+- User can share some part of current weather data via UIActivityViewController.
+- Saved weatherData can be later deleted by user.
 
 
